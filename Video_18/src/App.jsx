@@ -8,15 +8,20 @@ function slowCode() {
 function App() {
   // All hooks code goes hear
 
-  // const [name, setName] = useState("Ansh");
+  const [name, setName] = useState("Ansh");
   /*Use this to see how many times names are rendered*/
-  // console.log("Render", name);
+  console.log("Render", name);
 
   /* If you use function to set the initial value then it will recalled evverytime the component is re-rendered */
   /* Example: slowCode function takes time to set the initial value then re-rendered everytime */
-  const [name, setName] = useState(slowCode);
+  // const [name, setName] = useState(slowCode());
 
-  /*Solution use the arrow function*/
+  /*Solution use the arrow function or directly pass arrow function*/
+  
+  // const [name, setName] = useState(()=>{slowCode()});
+  // const [name,setName] = useState(()=>{return "slow Code"})
+
+
 
   function handleClick() {
     setName("Changed name");
