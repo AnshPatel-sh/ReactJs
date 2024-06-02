@@ -1,35 +1,129 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createRef } from "react";
+import { useState } from "react";
+
+const INITIAL_VALUES = ["A", "B", "C"];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [array, setArray] = useState(INITIAL_VALUES);
+  const [input, setInput] = useState("");
+  /* always remember that we cannot directly change the array we always returns the new copy cannot idrectly 
+  modify the array otherwise react will throw an error*/
+  /*remove first element */
+  function removeFirstElement() {
+    setArray((currentArray) => {
+      console.log(currentArray);
+      return currentArray.slice(1);
+    });
+  }
+
+  function removeSpecificLetter(letter) {
+    setArray((currentArray) => {
+      return currentArray.filter((element) => {
+        return element !== letter;
+      });
+    });
+  }
+
+  function addFirstElement(letter) {
+    setArray((currentArray) => {
+      return [letter, ...currentArray];
+    });
+  }
+
+  function addLastElement(letter) {
+    setArray((currentArray) => {
+      return [...currentArray, letter];
+    });
+  }
+
+  function clear() {
+    setArray([]);
+  }
+
+  function reset() {
+    setArray([INITIAL_VALUES]);
+  }
+
+  function updateAToH() {
+    setArray((currentArray) => {
+      return currentArray.map((element) => {
+        if (element === "A") {
+          return "H";
+        }
+        return element;
+      });
+    });
+  }
+
+  function addToFirstElement(letter) {
+    setArray((currentArray) => {
+      return [letter, ...currentArray];
+    });
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button onClick={removeFirstElement}>Remove First element</button>
+
+      <br />
+      <br />
+
+      <button
+        onClick={() => {
+          removeSpecificLetter("B");
+        }}
+      >
+        Remove specific letter
+      </button>
+      <br />
+
+      <button
+        onClick={() => {
+          addFirstElement("X");
+        }}
+      >
+        Add First Element
+      </button>
+
+      <br />
+
+      <button
+        onClick={() => {
+          addLastElement("Z");
+        }}
+      >
+        Add Last Element
+      </button>
+      <br />
+
+      <br />
+      <button onClick={clear}>Clear</button>
+      <br />
+      <button onClick={reset}>Reset</button>
+      <br />
+
+      <button onClick={updateAToH}>Update A to H</button>
+      <br />
+
+      <input
+        type="text"
+        value={input}
+        onChange={ (e)=>{
+          setInput(e.target.value)
+        }}
+      />
+      <button
+        onClick={() => {
+          addToFirstElement(input);
+        }}
+      >
+        Add First Element
+      </button>
+      <br />
+
+      <div>{array.join(", ")}</div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
