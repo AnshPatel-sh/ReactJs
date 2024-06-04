@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 export function App4(){
     const [name, setName] = useState("");
     const [age, setAge] = useState(0);
-    const {person} = name
+    const person = {name}
     useEffect(()=>{
         console.log(person)
     },[person])
