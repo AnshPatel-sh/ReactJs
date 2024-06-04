@@ -1,23 +1,16 @@
-import { useState, useEffect } from "react";
-import { App1 } from "./App1";
-import { App2 } from "./App2";
-import { App3 } from "./App3";
-import { App4 } from "./App4";
+import { useEffect, useState } from "react"
 
-function App() {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
 
-  function logs(){
-    console.log("Name or age is changed",name,age)
-  }
-  /*use effect only called when something is changed in the dependency array
-  so if you only pass name then it will be only called when the name input is changed*/
-  useEffect(logs,[name,age])
+export function App4(){
+    const [name, setName] = useState("");
+    const [age, setAge] = useState(0);
+    const {person} = name
+    useEffect(()=>{
+        console.log(person)
+    },[person])
 
-  return (
-    <>
-      <div>
+    return (
+      <>
         <input
           type="text"
           value={name}
@@ -53,14 +46,6 @@ function App() {
         </h4>
         <br />
         <br />
-
-        <App1></App1>
-        <App2></App2>
-        <App3></App3>
-        <App4></App4>
-      </div>
-    </>
-  );
+      </>
+    );
 }
-
-export default App;
