@@ -17,7 +17,8 @@ export function Example4() {
 
   return (
     <>
-      {/* aa code ma jayere input ma change thay that means name state is changed 
+      {/* 
+        aa code ma jayere input ma change thay that means name state is changed 
         so useEffect will execute and logs the name
         But useEffect will also be logged even if we increment or decrement 
 
