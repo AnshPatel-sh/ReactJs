@@ -9,6 +9,10 @@ function reducer(state, action) {
       return state - 1;
     case "INCREMENT":
       return state + 1;
+    case "RESET":
+      return 0;
+    case "INCREMENT-10":
+      return state + action.payload.value;
     default:
       return state;
   }
@@ -27,17 +31,33 @@ export function IncrementAndDecrement({ initialValue = 0 }) {
         -
       </button>
 
-
       {count}
 
-
-      
       <button
         onClick={() => {
           dispatch({ type: "INCREMENT" });
         }}
       >
         +
+      </button>
+
+      <br />
+      <button
+        onClick={() => {
+          dispatch({ type: "RESET" });
+        }}
+      >
+        Reset State
+      </button>
+
+      <br />
+
+      <button
+        onClick={() => {
+          dispatch({ type: "INCREMENT-10", payload: { value: 10 } });
+        }}
+      >
+        Increment by 10
       </button>
     </>
   );
